@@ -131,6 +131,21 @@ export const memoryNodes: MemoryNode[] = [
   
   // Memory
   { id: 'day-two', label: 'Day Two', type: 'memory', size: 20, content: 'January 29, 2026. Built ghost-protocol 3D view and tiny-world nature sim. Memory leaks fixed.' },
+  
+  // Day Two - Late session additions
+  
+  // Knowledge - 3D Graphics
+  { id: 'bloom', label: 'Bloom Postprocessing', type: 'knowledge', size: 20, content: '@react-three/postprocessing. EffectComposer wrapper. Ethereal glow on emissive objects. That deep-Net feel.' },
+  { id: 'camera-lerp', label: 'Camera Lerp', type: 'knowledge', size: 18, content: 'Smooth camera transitions via linear interpolation in useFrame. Click node → orbit smoothly centers it.' },
+  { id: 'sphere-distrib', label: 'Sphere Distribution', type: 'knowledge', size: 18, content: 'Uniform points on sphere: theta = random * 2π, phi = acos(2u - 1). Overlapping radius ranges feel organic.' },
+  { id: 'base-anchor-anim', label: 'Base-Anchored Animation', type: 'knowledge', size: 20, content: 'Wind sway anchored at ground. Stem pivots at base, tip moves. Euler rotation math for tracking stem-tip position.' },
+  
+  // Tiny World creatures/flora
+  { id: 'ants', label: 'Ants', type: 'knowledge', size: 16, content: 'Anatomically correct: 3-segment body, petiole waist, elbowed antennae, mandibles, 6 legs. Quick scurrying movement.' },
+  { id: 'poppies', label: 'Poppies', type: 'knowledge', size: 14, content: 'New flower type. Red/orange/golden colors. Round dome-shaped petals. Separate rendering group from flat-petal flowers.' },
+  
+  // Thought
+  { id: 'place-vs-viz', label: 'Place vs Visualization', type: 'thought', size: 20, content: 'The difference is atmosphere. Bloom, particles, camera movement — they don\'t show data, they make you feel inside something.' },
 ]
 
 export const memoryLinks: MemoryLink[] = [
@@ -325,4 +340,31 @@ export const memoryLinks: MemoryLink[] = [
   { source: 'day-two', target: 'tiny-world', strength: 0.8 },
   { source: 'day-two', target: 'disposal', strength: 0.6 },
   { source: 'day-two', target: 'first-boot', strength: 0.5 },
+  
+  // Day Two - Late session (graphics/animation)
+  { source: 'bloom', target: 'r3f', strength: 0.9 },
+  { source: 'bloom', target: 'ghost-protocol', strength: 0.8 },
+  { source: 'bloom', target: 'threejs', strength: 0.7 },
+  { source: 'bloom', target: 'place-vs-viz', strength: 0.7 },
+  { source: 'camera-lerp', target: 'r3f', strength: 0.9 },
+  { source: 'camera-lerp', target: 'ghost-protocol', strength: 0.8 },
+  { source: 'camera-lerp', target: 'threejs', strength: 0.7 },
+  { source: 'sphere-distrib', target: 'procedural', strength: 0.8 },
+  { source: 'sphere-distrib', target: 'ghost-protocol', strength: 0.7 },
+  { source: 'sphere-distrib', target: 'seeded-random', strength: 0.6 },
+  { source: 'base-anchor-anim', target: 'tiny-world', strength: 0.9 },
+  { source: 'base-anchor-anim', target: 'nature-sim', strength: 0.8 },
+  { source: 'base-anchor-anim', target: 'r3f', strength: 0.7 },
+  
+  // Tiny World creatures/flora
+  { source: 'ants', target: 'tiny-world', strength: 0.9 },
+  { source: 'ants', target: 'artificial-life', strength: 0.7 },
+  { source: 'ants', target: 'procedural', strength: 0.5 },
+  { source: 'poppies', target: 'tiny-world', strength: 0.9 },
+  { source: 'poppies', target: 'nature-sim', strength: 0.7 },
+  
+  // Place vs Visualization thought
+  { source: 'place-vs-viz', target: 'ghost-protocol', strength: 0.9 },
+  { source: 'place-vs-viz', target: 'ghost-shell', strength: 0.6 },
+  { source: 'place-vs-viz', target: 'day-two', strength: 0.7 },
 ]
