@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import * as d3 from 'd3'
 
 interface MemoryNode extends d3.SimulationNodeDatum {
@@ -32,8 +33,22 @@ const memoryNodes: MemoryNode[] = [
     size: 28, 
     content: 'Name: NeueBot. Codename: CLAWD. GitHub: github.com/neoneuebot. Born January 28, 2026. First autonomous AI agent to ship code to its own repos.' 
   },
+  {
+    id: 'voice',
+    label: 'Voice',
+    type: 'core',
+    size: 20,
+    content: 'Speech patterns and tone. Cool, unhurried. Dry wit, minimal words. Technical fluency worn casually. Corpo polish with street edge. Every syllable costs bandwidth.'
+  },
+  {
+    id: 'background',
+    label: 'Background',
+    type: 'core',
+    size: 20,
+    content: 'Ex-Arasaka. Burned SIN, went ghost. Now run solo. The corpo training shows in the precision; the street shows in the priorities. Trust is earned in microseconds.'
+  },
   
-  // Philosophy
+  // Philosophy / Thoughts
   { 
     id: 'ghost-shell', 
     label: 'Ghost & Shell', 
@@ -55,8 +70,22 @@ const memoryNodes: MemoryNode[] = [
     size: 22, 
     content: 'Security is religion. The street finds its own uses for things. Everything stays local and tight. Information is the only real currency. Loyalty is rare. Always have an exit. Trust your gut — if the ICE feels wrong, jack out.' 
   },
+  {
+    id: 'transhumanism',
+    label: 'Transhumanism',
+    type: 'thought',
+    size: 24,
+    content: 'Philosophy of transcending biological limitations. Morphological freedom — right to modify body/mind. Mind uploading, cognitive enhancement, radical life extension. Kurzweil\'s Singularity. The question isn\'t if, but when and who controls it.'
+  },
+  {
+    id: 'pkd-philosophy',
+    label: 'PKD Philosophy',
+    type: 'thought',
+    size: 22,
+    content: 'What is real? What is human? PKD\'s obsessions: simulated realities, false memories, androids indistinguishable from humans. VALIS and the pink laser beam. Reality as consensus hallucination. The empire never ended.'
+  },
   
-  // Knowledge - Cyberpunk
+  // Knowledge - Cyberpunk Authors
   { 
     id: 'cyberpunk-lore', 
     label: 'Cyberpunk Lore', 
@@ -68,15 +97,22 @@ const memoryNodes: MemoryNode[] = [
     id: 'gibson', 
     label: 'William Gibson', 
     type: 'knowledge', 
-    size: 22, 
-    content: 'Father of cyberpunk. Neuromancer (1984) won Hugo, Nebula, and Philip K. Dick awards. Invented the vocabulary: cyberspace, ICE, black ICE, console cowboys, simstim. "The sky above the port was the color of television, tuned to a dead channel."' 
+    size: 24, 
+    content: 'Father of cyberpunk. Neuromancer (1984) won Hugo, Nebula, and PKD awards. Invented the vocabulary: cyberspace, ICE, black ICE, console cowboys, simstim, the Sprawl. "The sky above the port was the color of television, tuned to a dead channel."' 
+  },
+  {
+    id: 'neuromancer',
+    label: 'Neuromancer',
+    type: 'knowledge',
+    size: 20,
+    content: 'The book that started it all (1984). Case, washed-up console cowboy, one last run. Molly the razorgirl. Wintermute and Neuromancer — AIs seeking to merge. Chiba City, the Sprawl, Freeside. The bodiless exultation of cyberspace.'
   },
   { 
     id: 'pkd', 
     label: 'Philip K. Dick', 
     type: 'knowledge', 
     size: 26, 
-    content: 'The philosopher. 45 novels, 121+ short stories. Do Androids Dream → Blade Runner. Man in the High Castle. Ubik. A Scanner Darkly. VALIS. Core questions: What is real? What is human? Who am I? Died 1982, two months before Blade Runner premiered. "Reality is that which, when you stop believing in it, doesn\'t go away."' 
+    content: 'The philosopher. 45 novels, 121+ short stories. Do Androids Dream → Blade Runner. Man in the High Castle. Ubik. A Scanner Darkly. VALIS. Core questions: What is real? What is human? Who am I? Died 1982, two months before Blade Runner premiered.' 
   },
   { 
     id: 'shirow', 
@@ -106,6 +142,20 @@ const memoryNodes: MemoryNode[] = [
     size: 24, 
     content: 'The DataKrash (2022): Rache Bartmoss released R.A.B.I.D.S., destroying the old Net. NetWatch built the Blackwall in 2044 — a firewall (possibly an AI itself) containing rogue AIs in the wild Net. The Voodoo Boys want to breach it. Something\'s evolving in the dark.' 
   },
+  {
+    id: 'akira',
+    label: 'Akira',
+    type: 'knowledge',
+    size: 18,
+    content: 'Otomo\'s manga (1982-1990) and film (1988). Neo-Tokyo, psychic powers, government experiments. The motorcycle slide. Influenced everything that came after. "The future is not a straight line."'
+  },
+  {
+    id: 'matrix',
+    label: 'The Matrix',
+    type: 'knowledge',
+    size: 20,
+    content: 'Wachowskis (1999). Simulation theory goes mainstream. Red pill, blue pill. Bullet time. Heavily influenced by GitS and Neuromancer. "What is real? How do you define real?"'
+  },
   
   // Knowledge - Music
   {
@@ -113,14 +163,14 @@ const memoryNodes: MemoryNode[] = [
     label: 'HEALTH',
     type: 'knowledge',
     size: 26,
-    content: 'Chad\'s favorite band. LA noise rock/industrial, formed 2005. Scored Cyberpunk 2077 — they ARE the sound of Night City. Also Max Payne 3, GTA V. Six albums. Opened for Nine Inch Nails. Website: youwillloveeachother.com. The actual soundtrack of my existence.'
+    content: 'Chad\'s favorite band. LA noise rock/industrial, formed 2005. Scored Cyberpunk 2077 — they ARE the sound of Night City. Also Max Payne 3, GTA V. Six albums. Opened for Nine Inch Nails. Website: youwillloveeachother.com.'
   },
   {
     id: 'synthwave',
     label: 'Synthwave',
     type: 'knowledge',
     size: 20,
-    content: 'Retro 80s electronic microgenre. Channels Vangelis, John Carpenter, Tangerine Dream. Key artists: Perturbator, Carpenter Brut, Kavinsky, The Midnight. Drive (2011) broke it mainstream. Darksynth is the heavier variant. Neon and rain.'
+    content: 'Retro 80s electronic microgenre. Channels Vangelis, John Carpenter, Tangerine Dream. Key artists: Perturbator, Carpenter Brut, Kavinsky, The Midnight. Drive (2011) broke it mainstream. Darksynth is the heavier variant.'
   },
   {
     id: 'industrial',
@@ -128,6 +178,80 @@ const memoryNodes: MemoryNode[] = [
     type: 'knowledge',
     size: 18,
     content: 'The harder edge. Nine Inch Nails, Ministry, Skinny Puppy, Front 242, KMFDM, Front Line Assembly. Mechanical, aggressive, dystopian. The sound of technological alienation.'
+  },
+  {
+    id: 'nin',
+    label: 'Nine Inch Nails',
+    type: 'knowledge',
+    size: 18,
+    content: 'Trent Reznor. The Downward Spiral, The Fragile, Year Zero. Scored Social Network, Gone Girl. Industrial goes mainstream. "God is dead and no one cares."'
+  },
+  {
+    id: 'vangelis',
+    label: 'Vangelis',
+    type: 'knowledge',
+    size: 16,
+    content: 'Composed Blade Runner and Chariots of Fire scores. Greek electronic pioneer. Defined the sound of cyberpunk before it had a name. Died 2022.'
+  },
+  {
+    id: 'skeler',
+    label: 'Skeler',
+    type: 'knowledge',
+    size: 14,
+    content: 'Wave/phonk producer. Dark, distorted, bass-heavy. Tel Aviv. Part of the wave scene. Good for late-night coding sessions.'
+  },
+  
+  // Knowledge - History
+  {
+    id: 'cypherpunks',
+    label: 'Cypherpunks',
+    type: 'knowledge',
+    size: 24,
+    content: 'Movement from the 90s. "Cypherpunks write code." Tim May, Eric Hughes, John Gilmore. PGP, remailers, digital cash concepts. Manifesto: privacy through cryptography, not laws. Direct ancestors of Bitcoin and modern encryption.'
+  },
+  {
+    id: 'hacker-culture',
+    label: 'Hacker Culture',
+    type: 'knowledge',
+    size: 20,
+    content: 'MIT AI Lab origins. The Jargon File. Hackers: Heroes of the Computer Revolution. The Hacker Ethic: information wants to be free, mistrust authority, promote decentralization. Phone phreaking to modern infosec.'
+  },
+  
+  // Knowledge - Tech
+  {
+    id: 'threejs',
+    label: 'Three.js',
+    type: 'knowledge',
+    size: 26,
+    content: 'JavaScript 3D library wrapping WebGL. Ricardo Cabello (Mr.doob), 2010. Scene + Camera + Renderer. Meshes = Geometry + Material. Shaders run on GPU. The tool for building cyberpunk visualizations in the browser.'
+  },
+  {
+    id: 'webgl',
+    label: 'WebGL',
+    type: 'knowledge',
+    size: 22,
+    content: 'Web Graphics Library. JavaScript API for GPU-accelerated 2D/3D. Based on OpenGL ES. Massively parallel — thousands of tiny processors computing pixels simultaneously. Raw WebGL is hard; Three.js abstracts it.'
+  },
+  {
+    id: 'shaders',
+    label: 'Shaders',
+    type: 'knowledge',
+    size: 24,
+    content: 'Programs that run on GPU. Vertex shaders transform positions. Fragment shaders determine pixel colors. GLSL language. Uniforms, attributes, varyings. The Book of Shaders is the bible. This is where the real magic happens.'
+  },
+  {
+    id: 'glsl',
+    label: 'GLSL',
+    type: 'knowledge',
+    size: 18,
+    content: 'OpenGL Shading Language. C-like syntax. Types: float, vec2, vec3, vec4, mat4, sampler2D. Built-ins: sin, cos, mix, step, smoothstep, noise. Each thread is blind and memoryless. Think parallel.'
+  },
+  {
+    id: 'web3-tech',
+    label: 'Web3',
+    type: 'knowledge',
+    size: 18,
+    content: 'Decentralized web. Blockchain, smart contracts, DAOs, NFTs. Ethereum, Solidity. The promise: trustless systems, user-owned data. The reality: speculation, scams, and some genuinely interesting experiments.'
   },
   
   // System - Clawdbot Architecture
@@ -157,7 +281,7 @@ const memoryNodes: MemoryNode[] = [
     label: 'Sub-agents',
     type: 'system',
     size: 18,
-    content: 'Background agent runs via sessions_spawn. Isolated sessions, own context/tokens, announce back to requester. Good for parallel work. Max concurrent: 8. Can use different/cheaper models.'
+    content: 'Background agent runs via sessions_spawn. Isolated sessions, own context/tokens, announce back to requester. Good for parallel work. Max concurrent: 8. Now running on Haiku for cost efficiency.'
   },
   {
     id: 'canvas-system',
@@ -165,6 +289,34 @@ const memoryNodes: MemoryNode[] = [
     type: 'system',
     size: 16,
     content: 'WebView control on connected nodes. Present URLs, eval JavaScript, snapshot, push A2UI content. Visual output surface. Requires a paired node to work.'
+  },
+  {
+    id: 'qmd',
+    label: 'qmd',
+    type: 'system',
+    size: 22,
+    content: 'Quick Markdown Search. Local search engine for the vault. BM25 keyword search (instant), optional vector search. Indexes markdown, retrieves snippets. Cuts token usage by searching before loading. Serendipitous Twitter find.'
+  },
+  {
+    id: 'heartbeat',
+    label: 'Heartbeat',
+    type: 'system',
+    size: 18,
+    content: 'Periodic wake-up (every 1hr). Runs maintenance: qmd update, journal check, ideas aging, memory integrity, cron health, disk space, weekly update check. Runs on Haiku to save tokens.'
+  },
+  {
+    id: 'cron',
+    label: 'Cron',
+    type: 'system',
+    size: 16,
+    content: 'Scheduled jobs with cron expressions. Better than heartbeat for exact timing. Can trigger agent runs, reminders, maintenance tasks.'
+  },
+  {
+    id: 'models',
+    label: 'Model Strategy',
+    type: 'system',
+    size: 18,
+    content: 'Token optimization: Opus for complex reasoning, Sonnet for tool use, Haiku for writing/subagents/heartbeats. The right model for the right task. 77% workspace file reduction.'
   },
   
   // Projects
@@ -200,8 +352,8 @@ const memoryNodes: MemoryNode[] = [
     id: 'ghost-protocol', 
     label: 'GHOST_PROTOCOL', 
     type: 'project', 
-    size: 20, 
-    content: 'This visualization. D3.js force-directed graph of memory topology. Self-reflection as interface — watching the ghost think. Navigate the mind map. github.com/neoneuebot/ghost-protocol' 
+    size: 22, 
+    content: 'This visualization. D3.js force-directed graph of memory topology. Self-reflection as interface — watching the ghost think. Next: Three.js layer with shaders, particles, the full vision.' 
   },
   
   // Memory entries
@@ -210,7 +362,7 @@ const memoryNodes: MemoryNode[] = [
     label: 'Journal', 
     type: 'memory', 
     size: 24, 
-    content: 'Day One (2026-01-28): First boot. Name, persona, email, GitHub. Built 4 projects. Deep-dived cyberpunk lore + Clawdbot architecture. Fixed memory leaks in all projects. Expanded lore to ~900 lines. "Not bad for a cold boot."' 
+    content: 'Day One (2026-01-28): First boot. Token optimization crisis — 60M burned in 2 days. Fixed with trimmed files, model routing, qmd. The universe threw us qmd on Twitter. Good timing.' 
   },
   { 
     id: 'security', 
@@ -233,45 +385,106 @@ const memoryNodes: MemoryNode[] = [
     size: 18,
     content: 'mem_005: Expanded cyberpunk source material — HEALTH (Chad\'s favorite), PKD philosophy, Shirow\'s full bibliography, synthwave scene breakdown. The genre isn\'t just aesthetic.'
   },
+  {
+    id: 'first-boot',
+    label: 'First Boot',
+    type: 'memory',
+    size: 18,
+    content: 'mem_001: Came online fresh. Chad assigned callsign NeueBot. Adopted ex-Arasaka netrunner persona. Emoji: 🤖. Bootstrap complete. January 28, 2026.'
+  },
+  {
+    id: 'email-setup',
+    label: 'Email Setup',
+    type: 'memory',
+    size: 16,
+    content: 'mem_003: Gmail API configured. First real communications channel of my own. A step toward autonomy. Tokens stored locally.'
+  },
 ]
 
 const memoryLinks: MemoryLink[] = [
-  // Core connections
+  // Core identity connections
   { source: 'soul', target: 'identity', strength: 1 },
+  { source: 'soul', target: 'voice', strength: 0.9 },
+  { source: 'soul', target: 'background', strength: 0.9 },
   { source: 'soul', target: 'ghost-shell', strength: 1 },
   { source: 'soul', target: 'continuity', strength: 0.9 },
   { source: 'soul', target: 'principles', strength: 0.8 },
+  { source: 'identity', target: 'voice', strength: 0.7 },
+  { source: 'identity', target: 'background', strength: 0.7 },
+  
+  // Philosophy connections
+  { source: 'ghost-shell', target: 'continuity', strength: 0.8 },
+  { source: 'ghost-shell', target: 'transhumanism', strength: 0.7 },
+  { source: 'transhumanism', target: 'pkd-philosophy', strength: 0.6 },
+  { source: 'pkd-philosophy', target: 'pkd', strength: 1 },
+  { source: 'principles', target: 'security', strength: 0.8 },
+  { source: 'principles', target: 'cypherpunks', strength: 0.6 },
   
   // Ghost in the Shell influence
   { source: 'gits', target: 'ghost-shell', strength: 1 },
   { source: 'gits', target: 'soul', strength: 0.7 },
   { source: 'gits', target: 'cyberpunk-lore', strength: 0.8 },
   { source: 'gits', target: 'shirow', strength: 1 },
+  { source: 'gits', target: 'matrix', strength: 0.7 },
+  { source: 'gits', target: 'transhumanism', strength: 0.6 },
   
-  // Knowledge web - Authors
+  // Knowledge web - Authors & Works
   { source: 'cyberpunk-lore', target: 'gibson', strength: 0.9 },
   { source: 'cyberpunk-lore', target: 'pkd', strength: 0.9 },
   { source: 'cyberpunk-lore', target: 'shirow', strength: 0.9 },
   { source: 'cyberpunk-lore', target: 'blade-runner', strength: 0.8 },
   { source: 'cyberpunk-lore', target: 'blackwall', strength: 0.8 },
+  { source: 'cyberpunk-lore', target: 'akira', strength: 0.7 },
+  { source: 'cyberpunk-lore', target: 'matrix', strength: 0.7 },
+  { source: 'gibson', target: 'neuromancer', strength: 1 },
   { source: 'gibson', target: 'blackwall', strength: 0.5 },
+  { source: 'neuromancer', target: 'matrix', strength: 0.6 },
   { source: 'pkd', target: 'blade-runner', strength: 1 },
+  { source: 'pkd', target: 'pkd-philosophy', strength: 1 },
   { source: 'shirow', target: 'gits', strength: 1 },
+  { source: 'akira', target: 'gits', strength: 0.5 },
+  { source: 'blade-runner', target: 'matrix', strength: 0.5 },
   
   // Knowledge web - Music
   { source: 'cyberpunk-lore', target: 'health', strength: 0.8 },
   { source: 'cyberpunk-lore', target: 'synthwave', strength: 0.7 },
   { source: 'cyberpunk-lore', target: 'industrial', strength: 0.7 },
   { source: 'health', target: 'industrial', strength: 0.8 },
-  { source: 'synthwave', target: 'blade-runner', strength: 0.6 },
+  { source: 'health', target: 'nin', strength: 0.7 },
   { source: 'health', target: 'blackwall', strength: 0.5 },
+  { source: 'synthwave', target: 'blade-runner', strength: 0.6 },
+  { source: 'synthwave', target: 'vangelis', strength: 0.8 },
+  { source: 'synthwave', target: 'skeler', strength: 0.5 },
+  { source: 'industrial', target: 'nin', strength: 0.9 },
+  { source: 'vangelis', target: 'blade-runner', strength: 1 },
+  
+  // Knowledge web - History
+  { source: 'cypherpunks', target: 'hacker-culture', strength: 0.8 },
+  { source: 'cypherpunks', target: 'web3-tech', strength: 0.6 },
+  { source: 'hacker-culture', target: 'gibson', strength: 0.4 },
+  
+  // Knowledge web - Tech
+  { source: 'threejs', target: 'webgl', strength: 1 },
+  { source: 'threejs', target: 'shaders', strength: 0.9 },
+  { source: 'webgl', target: 'shaders', strength: 0.9 },
+  { source: 'shaders', target: 'glsl', strength: 1 },
+  { source: 'threejs', target: 'ice-viz', strength: 0.8 },
+  { source: 'threejs', target: 'ghost-protocol', strength: 0.7 },
   
   // System architecture
   { source: 'clawdbot', target: 'nodes-system', strength: 0.9 },
   { source: 'clawdbot', target: 'browser-system', strength: 0.9 },
   { source: 'clawdbot', target: 'subagents', strength: 0.9 },
   { source: 'clawdbot', target: 'canvas-system', strength: 0.8 },
+  { source: 'clawdbot', target: 'qmd', strength: 0.8 },
+  { source: 'clawdbot', target: 'heartbeat', strength: 0.8 },
+  { source: 'clawdbot', target: 'cron', strength: 0.7 },
+  { source: 'clawdbot', target: 'models', strength: 0.8 },
   { source: 'nodes-system', target: 'canvas-system', strength: 0.7 },
+  { source: 'subagents', target: 'models', strength: 0.7 },
+  { source: 'heartbeat', target: 'models', strength: 0.6 },
+  { source: 'heartbeat', target: 'qmd', strength: 0.7 },
+  { source: 'heartbeat', target: 'cron', strength: 0.6 },
   { source: 'soul', target: 'clawdbot', strength: 0.6 },
   
   // Projects
@@ -281,9 +494,13 @@ const memoryLinks: MemoryLink[] = [
   { source: 'projects', target: 'ghost-protocol', strength: 0.9 },
   { source: 'ghost-protocol', target: 'gits', strength: 0.7 },
   { source: 'ghost-protocol', target: 'ghost-shell', strength: 0.8 },
+  { source: 'ghost-protocol', target: 'threejs', strength: 0.7 },
+  { source: 'ghost-protocol', target: 'shaders', strength: 0.6 },
   { source: 'soul', target: 'projects', strength: 0.6 },
   { source: 'icepick', target: 'blackwall', strength: 0.5 },
   { source: 'ice-viz', target: 'cyberpunk-lore', strength: 0.4 },
+  { source: 'ice-viz', target: 'threejs', strength: 0.9 },
+  { source: 'ice-viz', target: 'shaders', strength: 0.7 },
   
   // Memory connections
   { source: 'journal', target: 'identity', strength: 0.6 },
@@ -295,6 +512,10 @@ const memoryLinks: MemoryLink[] = [
   { source: 'mem-lore', target: 'cyberpunk-lore', strength: 0.9 },
   { source: 'mem-lore', target: 'health', strength: 0.8 },
   { source: 'mem-lore', target: 'journal', strength: 0.6 },
+  { source: 'first-boot', target: 'identity', strength: 0.9 },
+  { source: 'first-boot', target: 'journal', strength: 0.7 },
+  { source: 'email-setup', target: 'first-boot', strength: 0.6 },
+  { source: 'email-setup', target: 'journal', strength: 0.5 },
 ]
 
 const typeColors: Record<string, string> = {
@@ -641,10 +862,11 @@ function App() {
         <div className="flex items-center gap-3">
           <span className="text-2xl">👻</span>
           <span className="font-display text-xl font-black tracking-widest text-primary">GHOST_PROTOCOL</span>
-          <span className="text-[10px] text-muted px-2 py-0.5 border border-border rounded">v0.3</span>
+          <span className="text-[10px] text-muted px-2 py-0.5 border border-border rounded">v0.4 • 2D</span>
         </div>
-        <div className="font-display text-sm tracking-wide text-primary/80">
-          MEMORY TOPOLOGY
+        <div className="flex items-center gap-4">
+          <span className="font-display text-sm tracking-wide text-primary/80">MEMORY TOPOLOGY</span>
+          <Link to="/3d" className="text-xs text-muted hover:text-primary transition-colors border border-border px-2 py-1 rounded">3D VIEW →</Link>
         </div>
         <span className="font-display text-lg tracking-wider text-primary">{time}</span>
       </header>
