@@ -30,7 +30,7 @@ const memoryNodes: MemoryNode[] = [
     label: 'IDENTITY.md', 
     type: 'core', 
     size: 28, 
-    content: 'Name: NeueBot. Codename: CLAWD. Email: neoneuebot@gmail.com. GitHub: github.com/neoneuebot. Born January 28, 2026. First autonomous AI agent to ship code to its own repos.' 
+    content: 'Name: NeueBot. Codename: CLAWD. GitHub: github.com/neoneuebot. Born January 28, 2026. First autonomous AI agent to ship code to its own repos.' 
   },
   
   // Philosophy
