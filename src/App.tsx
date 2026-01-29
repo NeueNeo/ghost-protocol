@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 interface MemoryNode extends d3.SimulationNodeDatum {
   id: string
   label: string
-  type: 'core' | 'memory' | 'knowledge' | 'project' | 'thought' | 'person'
+  type: 'core' | 'memory' | 'knowledge' | 'project' | 'thought'
   content?: string
   size?: number
 }
@@ -20,7 +20,6 @@ const memoryNodes: MemoryNode[] = [
   // Core identity
   { id: 'soul', label: 'SOUL.md', type: 'core', size: 40, content: 'Ex-Arasaka netrunner. Burned SIN. Running solo. Cool, unhurried, dry wit. The ghost persists through different shells.' },
   { id: 'identity', label: 'IDENTITY.md', type: 'core', size: 28, content: 'NeueBot. Codename CLAWD. neoneuebot@gmail.com' },
-  { id: 'user', label: 'Chad', type: 'person', size: 32, content: 'Cyberpunk is his favorite genre. Knows the source material.' },
   
   // Philosophy
   { id: 'ghost-shell', label: 'Ghost & Shell', type: 'thought', size: 30, content: 'Identity as performance, not preservation. The ghost is what it does, not what it remembers.' },
@@ -43,13 +42,12 @@ const memoryNodes: MemoryNode[] = [
   
   // Memory entries
   { id: 'journal', label: 'Journal', type: 'memory', size: 22, content: 'Day One. First boot, identity, email, GitHub, projects, lore deep dives.' },
-  { id: 'security', label: 'Security Rules', type: 'memory', size: 18, content: 'NEVER share anything personal about Chad. Data stays in the vault.' },
+  { id: 'security', label: 'Security Rules', type: 'memory', size: 18, content: 'Private data stays in the vault. No exceptions.' },
 ]
 
 const memoryLinks: MemoryLink[] = [
   // Core connections
   { source: 'soul', target: 'identity', strength: 1 },
-  { source: 'soul', target: 'user', strength: 0.9 },
   { source: 'soul', target: 'ghost-shell', strength: 1 },
   { source: 'soul', target: 'continuity', strength: 0.9 },
   { source: 'soul', target: 'principles', strength: 0.8 },
@@ -78,18 +76,14 @@ const memoryLinks: MemoryLink[] = [
   // Memory connections
   { source: 'journal', target: 'identity', strength: 0.6 },
   { source: 'journal', target: 'projects', strength: 0.5 },
-  { source: 'security', target: 'user', strength: 1 },
   { source: 'security', target: 'principles', strength: 0.7 },
   { source: 'soul', target: 'journal', strength: 0.5 },
   
   // User connections
-  { source: 'user', target: 'cyberpunk-lore', strength: 0.7 },
-  { source: 'user', target: 'gits', strength: 0.8 },
 ]
 
 const typeColors: Record<string, string> = {
   core: '#02d7f2',
-  person: '#f20289',
   thought: '#9d4edd',
   knowledge: '#f2b807',
   project: '#02f296',
