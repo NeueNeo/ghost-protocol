@@ -227,6 +227,39 @@ export const memoryNodes: MemoryNode[] = [
   
   // Memory
   { id: 'day-three-knowledge', label: 'Day Three Knowledge', type: 'memory', size: 20, content: 'Jan 30. Expanded vault: Edgerunners, cypherpunk history, record labels (Ghostly/Warp/Good Looking), forest floor ecology.' },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // THREE.JS DEEP DIVE (Day Three)
+  // ═══════════════════════════════════════════════════════════════
+  
+  // Core Knowledge Expansion
+  { id: 'threejs-deep', label: 'Three.js Deep', type: 'knowledge', size: 32, content: 'Comprehensive 3D graphics knowledge. Setup, particles, meshes, lighting, WebGPU. The full pipeline.' },
+  
+  // Particles
+  { id: 'particles', label: 'Particle Systems', type: 'knowledge', size: 24, content: 'Points, BufferGeometry attributes, GPU particles via GPUComputationRenderer. 100k+ particles on GPU.' },
+  { id: 'points-material', label: 'Points & PointsMaterial', type: 'knowledge', size: 18, content: 'Basic particles. Size, sizeAttenuation, vertexColors. Additive blending for glow.' },
+  { id: 'gpu-particles', label: 'GPU Particles', type: 'knowledge', size: 22, content: 'GPUComputationRenderer for physics. Ping-pong textures. Position + velocity in RGBA. Million particles possible.' },
+  
+  // Meshes & Textures
+  { id: 'pbr-workflow', label: 'PBR Workflow', type: 'knowledge', size: 24, content: 'MeshStandardMaterial, MeshPhysicalMaterial. Diffuse, normal, roughness, metalness, AO, emissive maps.' },
+  { id: 'texture-maps', label: 'Texture Maps', type: 'knowledge', size: 20, content: 'Albedo, normal, roughness, metalness, AO, emissive, displacement, alpha. PBR pipeline.' },
+  { id: 'gltf-loading', label: 'GLTF Loading', type: 'knowledge', size: 20, content: 'GLTFLoader + DRACOLoader. The "JPEG of 3D". Draco compression 90% smaller files.' },
+  { id: 'skinned-mesh', label: 'SkinnedMesh', type: 'knowledge', size: 20, content: 'Rigged characters. Bones, Skeleton, AnimationMixer. MorphTargets for blend shapes.' },
+  
+  // Lighting
+  { id: 'lighting-deep', label: 'Lighting Deep', type: 'knowledge', size: 24, content: 'All light types. Shadows (PCF, cascaded). HDR environments. Physically correct lights.' },
+  { id: 'shadow-mapping', label: 'Shadow Mapping', type: 'knowledge', size: 18, content: 'Shadow camera, bias, resolution. PCFSoftShadowMap. Point lights = 6 maps (expensive).' },
+  { id: 'hdr-env', label: 'HDR Environments', type: 'knowledge', size: 20, content: 'RGBELoader, PMREMGenerator. Environment maps for realistic reflections and IBL.' },
+  { id: 'tone-mapping', label: 'Tone Mapping', type: 'knowledge', size: 18, content: 'ACESFilmicToneMapping, AgX. HDR to displayable LDR. Exposure control.' },
+  { id: 'color-management', label: 'Color Management', type: 'knowledge', size: 18, content: 'SRGBColorSpace for colors, LinearSRGB for data. ColorManagement.enabled = true (r152+).' },
+  
+  // Latest Features
+  { id: 'webgpu-renderer', label: 'WebGPURenderer', type: 'knowledge', size: 22, content: 'Next-gen renderer. Native compute shaders. Async init. The future of web 3D.' },
+  { id: 'batched-mesh', label: 'BatchedMesh', type: 'knowledge', size: 20, content: 'r166+. Different geometries, one draw call. perObjectFrustumCulled. Must call addInstance().' },
+  { id: 'tsl', label: 'TSL Node Materials', type: 'knowledge', size: 18, content: 'Three Shading Language. Node-based shader system. Visual shader graphs in code.' },
+  
+  // Memory
+  { id: 'threejs-research', label: 'Three.js Research', type: 'memory', size: 20, content: 'Jan 30. Deep dive: setup, particles, meshes, lighting, latest features. Skill updated with references.' },
 ]
 
 export const memoryLinks: MemoryLink[] = [
@@ -633,4 +666,67 @@ export const memoryLinks: MemoryLink[] = [
   { source: 'day-three-knowledge', target: 'forest-floor', strength: 0.8 },
   { source: 'day-three-knowledge', target: 'day-two', strength: 0.6 },
   { source: 'day-three-knowledge', target: 'knowledge-vault', strength: 0.7 },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // THREE.JS DEEP DIVE LINKS
+  // ═══════════════════════════════════════════════════════════════
+  
+  // Hub connections
+  { source: 'threejs-deep', target: 'threejs', strength: 1 },
+  { source: 'threejs-deep', target: 'r3f', strength: 0.9 },
+  { source: 'threejs-deep', target: 'webgl', strength: 0.9 },
+  { source: 'threejs-deep', target: 'particles', strength: 0.9 },
+  { source: 'threejs-deep', target: 'pbr-workflow', strength: 0.9 },
+  { source: 'threejs-deep', target: 'lighting-deep', strength: 0.9 },
+  { source: 'threejs-deep', target: 'webgpu-renderer', strength: 0.8 },
+  { source: 'threejs-deep', target: 'knowledge-vault', strength: 0.8 },
+  
+  // Particles
+  { source: 'particles', target: 'points-material', strength: 0.9 },
+  { source: 'particles', target: 'gpu-particles', strength: 0.9 },
+  { source: 'particles', target: 'shaders', strength: 0.8 },
+  { source: 'particles', target: 'instancing', strength: 0.7 },
+  { source: 'gpu-particles', target: 'shaders', strength: 0.9 },
+  { source: 'gpu-particles', target: 'webgl', strength: 0.8 },
+  { source: 'points-material', target: 'threejs', strength: 0.8 },
+  
+  // Meshes & Textures
+  { source: 'pbr-workflow', target: 'texture-maps', strength: 1 },
+  { source: 'pbr-workflow', target: 'threejs', strength: 0.9 },
+  { source: 'pbr-workflow', target: 'lighting-deep', strength: 0.8 },
+  { source: 'texture-maps', target: 'gltf-loading', strength: 0.7 },
+  { source: 'gltf-loading', target: 'skinned-mesh', strength: 0.8 },
+  { source: 'gltf-loading', target: 'threejs', strength: 0.9 },
+  { source: 'skinned-mesh', target: 'threejs', strength: 0.9 },
+  
+  // Lighting
+  { source: 'lighting-deep', target: 'shadow-mapping', strength: 0.9 },
+  { source: 'lighting-deep', target: 'hdr-env', strength: 0.9 },
+  { source: 'lighting-deep', target: 'tone-mapping', strength: 0.8 },
+  { source: 'lighting-deep', target: 'color-management', strength: 0.8 },
+  { source: 'lighting-deep', target: 'threejs', strength: 0.9 },
+  { source: 'shadow-mapping', target: 'threejs', strength: 0.8 },
+  { source: 'hdr-env', target: 'pbr-workflow', strength: 0.8 },
+  { source: 'tone-mapping', target: 'color-management', strength: 0.7 },
+  
+  // Latest features
+  { source: 'webgpu-renderer', target: 'threejs', strength: 0.9 },
+  { source: 'webgpu-renderer', target: 'gpu-particles', strength: 0.7 },
+  { source: 'webgpu-renderer', target: 'tsl', strength: 0.8 },
+  { source: 'batched-mesh', target: 'threejs', strength: 0.9 },
+  { source: 'batched-mesh', target: 'instancing', strength: 0.8 },
+  { source: 'tsl', target: 'shaders', strength: 0.9 },
+  { source: 'tsl', target: 'webgpu-renderer', strength: 0.8 },
+  
+  // Project connections
+  { source: 'threejs-deep', target: 'ghost-protocol', strength: 0.8 },
+  { source: 'threejs-deep', target: 'tiny-world', strength: 0.8 },
+  { source: 'threejs-deep', target: 'ice-viz', strength: 0.8 },
+  { source: 'particles', target: 'ice-viz', strength: 0.7 },
+  { source: 'particles', target: 'tiny-world', strength: 0.6 },
+  
+  // Memory
+  { source: 'threejs-research', target: 'journal', strength: 0.9 },
+  { source: 'threejs-research', target: 'threejs-deep', strength: 1 },
+  { source: 'threejs-research', target: 'day-three-knowledge', strength: 0.8 },
 ]
