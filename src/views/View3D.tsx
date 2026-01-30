@@ -27,12 +27,12 @@ function getNodePositions(): Record<string, [number, number, number]> {
   
   // Distance preference by type (soft, not hard shells)
   const distanceHint: Record<string, [number, number]> = {
-    core: [2, 5],
-    thought: [4, 9],
-    knowledge: [5, 11],
-    project: [6, 12],
-    memory: [7, 14],
-    system: [10, 18],
+    core: [4, 10],
+    thought: [8, 18],
+    knowledge: [10, 22],
+    project: [12, 24],
+    memory: [14, 28],
+    system: [20, 36],
   }
   
   memoryNodes.forEach((node) => {
@@ -112,7 +112,7 @@ function Stars() {
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
-      const radius = 30 + Math.random() * 70
+      const radius = 60 + Math.random() * 140
       const theta = Math.random() * Math.PI * 2
       const phi = Math.acos(2 * Math.random() - 1)
       pos[i * 3] = radius * Math.sin(phi) * Math.cos(theta)
@@ -269,8 +269,8 @@ function CameraController({ target }: { target: [number, number, number] | null 
       ref={controlsRef}
       enableDamping 
       dampingFactor={0.05} 
-      minDistance={8} 
-      maxDistance={40} 
+      minDistance={15} 
+      maxDistance={80} 
       autoRotate 
       autoRotateSpeed={0.15} 
     />
@@ -355,9 +355,9 @@ export default function View3D() {
       </header>
       
       <main className="flex-1 relative">
-        <Canvas camera={{ position: [0, 5, 18], fov: 60 }}>
+        <Canvas camera={{ position: [0, 10, 40], fov: 60 }}>
           <color attach="background" args={['#0a0a0f']} />
-          <fog attach="fog" args={['#0a0a0f', 15, 45]} />
+          <fog attach="fog" args={['#0a0a0f', 30, 90]} />
           <Scene onSelect={setSelected} selected={selected} />
           <EffectComposer>
             <Bloom 
