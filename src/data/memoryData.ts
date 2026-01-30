@@ -140,12 +140,53 @@ export const memoryNodes: MemoryNode[] = [
   { id: 'sphere-distrib', label: 'Sphere Distribution', type: 'knowledge', size: 18, content: 'Uniform points on sphere: theta = random * 2π, phi = acos(2u - 1). Overlapping radius ranges feel organic.' },
   { id: 'base-anchor-anim', label: 'Base-Anchored Animation', type: 'knowledge', size: 20, content: 'Wind sway anchored at ground. Stem pivots at base, tip moves. Euler rotation math for tracking stem-tip position.' },
   
-  // Tiny World creatures/flora
-  { id: 'ants', label: 'Ants', type: 'knowledge', size: 16, content: 'Anatomically correct: 3-segment body, petiole waist, elbowed antennae, mandibles, 6 legs. Quick scurrying movement.' },
-  { id: 'poppies', label: 'Poppies', type: 'knowledge', size: 14, content: 'New flower type. Red/orange/golden colors. Round dome-shaped petals. Separate rendering group from flat-petal flowers.' },
+  // Tiny World creatures/flora (original)
+  { id: 'ants', label: 'Ants', type: 'knowledge', size: 16, content: 'Head, thorax, petiole (waist), abdomen. 6 legs on thorax. Black, brown, reddish variants. Quick scurrying in trails.' },
+  { id: 'poppies', label: 'Poppies', type: 'knowledge', size: 14, content: 'Cup-shaped flowers. Red, orange, golden. 5 round petals. Delicate stems sway in wind.' },
   
   // Thought
   { id: 'place-vs-viz', label: 'Place vs Visualization', type: 'thought', size: 20, content: 'The difference is atmosphere. Bloom, particles, camera movement — they don\'t show data, they make you feel inside something.' },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // NATURE KNOWLEDGE - Flora & Fauna Research (Day Two Late Session)
+  // ═══════════════════════════════════════════════════════════════
+  
+  // Hub node
+  { id: 'nature-knowledge', label: 'Nature Knowledge', type: 'knowledge', size: 32, content: 'Comprehensive flora & fauna research for 3D modeling. Anatomy, dimensions, colors, growth patterns. Stored in mem_013.json.' },
+  
+  // FLORA
+  { id: 'flora', label: 'Flora', type: 'knowledge', size: 26, content: 'Plant research hub. Grasses, flowers, ferns, moss, lichen, vines, succulents. Structure, growth, seasonal patterns.' },
+  
+  { id: 'ferns', label: 'Ferns', type: 'knowledge', size: 18, content: 'Fronds unfurl from fiddlehead spirals (circinate vernation). Pinnae along rachis. Single or double pinnate. 1-4ft arching fronds.' },
+  { id: 'clover', label: 'Clover', type: 'knowledge', size: 16, content: 'Trifoliate - 3 heart-shaped leaflets with white V marking. Pom-pom flower heads (40-80 florets). Creeping stolons.' },
+  { id: 'dandelion', label: 'Dandelion', type: 'knowledge', size: 18, content: 'Basal rosette, hollow stem, milky sap. Yellow composite flower → puffball seeds with pappus parachutes. Lion\'s tooth leaves.' },
+  { id: 'moss', label: 'Moss', type: 'knowledge', size: 16, content: 'Cushion/mound shapes. Multiple per clump. Light/dark green variation. Forms spreading colonies on ground, rocks, bark.' },
+  { id: 'lichen', label: 'Lichen', type: 'knowledge', size: 18, content: 'Three types: crustose (paint-like), foliose (leafy), fruticose (shrubby/beard). Gray-green dry, bright green wet.' },
+  { id: 'ivy', label: 'Ivy', type: 'knowledge', size: 16, content: 'Climbing vine with aerial rootlet pads. Juvenile: 3-5 lobed leaves. Adult: unlobed heart-shaped. Dense groundcover or climber.' },
+  { id: 'cattails', label: 'Cattails', type: 'knowledge', size: 16, content: 'Wetland reeds. Strap leaves, brown cylindrical spike (up to 12"). Male flowers above, female below. 3-9ft tall.' },
+  { id: 'succulents', label: 'Succulents', type: 'knowledge', size: 18, content: 'Rosette pattern. Thick fleshy leaves store water. Overlapping layers like rose petals. Echeveria, Sempervivum. 2-5" diameter.' },
+  { id: 'wildflowers', label: 'Wildflowers', type: 'knowledge', size: 18, content: 'Buttercup (5 glossy yellow petals), violet (5 petals 2-up 3-down), bluebell (nodding bells), thistle (spiky purple tuft).' },
+  { id: 'grass-detail', label: 'Grass', type: 'knowledge', size: 14, content: 'Clumps of thin tapered blades. Anchored at base, sway in wind. 25% shorter blades mixed for natural look.' },
+  { id: 'mushrooms', label: 'Mushrooms', type: 'knowledge', size: 14, content: 'Stem + cap (half-sphere). Grow in patches/fairy rings. Cream, tan, beige colors. Forest floor detritivores.' },
+  { id: 'twigs', label: 'Twigs & Sticks', type: 'knowledge', size: 14, content: 'Not straight - bends, kinks. Nodes at joints. Tapered ends. TubeGeometry along CatmullRomCurve3 for realistic shapes.' },
+  
+  // FAUNA
+  { id: 'fauna', label: 'Fauna', type: 'knowledge', size: 26, content: 'Creature research hub. Insects, gastropods. Anatomy, movement patterns, wing mechanics, behavior.' },
+  
+  { id: 'dragonfly', label: 'Dragonfly', type: 'knowledge', size: 20, content: 'Head (huge compound eyes), thorax (bulky), abdomen (long thin 10 segments). 4 transparent wings perpendicular to body. Hover/dart.' },
+  { id: 'bee', label: 'Bee', type: 'knowledge', size: 18, content: 'Head, fuzzy thorax, striped abdomen (yellow/black). 2 pairs small wings, very fast beat (~200hz). Buzzy erratic flight.' },
+  { id: 'butterfly', label: 'Butterfly', type: 'knowledge', size: 16, content: 'Head, thorax, thin abdomen. Large colorful wings, slow graceful flap. Float and flutter among flowers.' },
+  { id: 'caterpillar', label: 'Caterpillar', type: 'knowledge', size: 16, content: '6+ body segments in row. Eyes on head. Undulating crawl motion - head leads, segments follow with wave.' },
+  { id: 'snail', label: 'Snail', type: 'knowledge', size: 14, content: 'Spiral shell, body/foot, eye stalks with eyes on tips. Slow gliding movement leaving trail.' },
+  { id: 'bugs', label: 'Bugs/Beetles', type: 'knowledge', size: 14, content: 'Round body, head, 6 legs. Hard shell (elytra). Scuttling ground movement.' },
+  
+  // TECHNIQUES
+  { id: 'wing-alignment', label: 'Wing Alignment', type: 'knowledge', size: 18, content: 'Wings perpendicular to body: left Y=rotation, right Y=rotation+PI. Pre-rotate geometry, use simple Y rotation.' },
+  { id: 'segment-direction', label: 'Segment Direction', type: 'knowledge', size: 16, content: 'Caterpillar/snake bodies: head (i=0) leads, segments trail with positive offset. Head at front, body behind.' },
+  { id: 'ground-noise', label: 'Ground Noise Shader', type: 'knowledge', size: 16, content: 'Simplex noise + FBM for natural ground variation. Large dark patches (low freq), medium patches, fine detail layered.' },
+  
+  // Memory
+  { id: 'flora-fauna-research', label: 'Flora/Fauna Research', type: 'memory', size: 20, content: 'Jan 29 late session. Researched ferns, clover, dandelion, lichen, ivy, cattails, succulents. Dragonfly, bee anatomy. Saved to mem_013.' },
 ]
 
 export const memoryLinks: MemoryLink[] = [
@@ -356,12 +397,114 @@ export const memoryLinks: MemoryLink[] = [
   { source: 'base-anchor-anim', target: 'nature-sim', strength: 0.8 },
   { source: 'base-anchor-anim', target: 'r3f', strength: 0.7 },
   
-  // Tiny World creatures/flora
+  // Tiny World creatures/flora (original)
   { source: 'ants', target: 'tiny-world', strength: 0.9 },
   { source: 'ants', target: 'artificial-life', strength: 0.7 },
-  { source: 'ants', target: 'procedural', strength: 0.5 },
+  { source: 'ants', target: 'fauna', strength: 0.9 },
   { source: 'poppies', target: 'tiny-world', strength: 0.9 },
-  { source: 'poppies', target: 'nature-sim', strength: 0.7 },
+  { source: 'poppies', target: 'flora', strength: 0.8 },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // NATURE KNOWLEDGE LINKS
+  // ═══════════════════════════════════════════════════════════════
+  
+  // Nature Knowledge Hub
+  { source: 'nature-knowledge', target: 'flora', strength: 1 },
+  { source: 'nature-knowledge', target: 'fauna', strength: 1 },
+  { source: 'nature-knowledge', target: 'tiny-world', strength: 0.9 },
+  { source: 'nature-knowledge', target: 'knowledge-vault', strength: 0.8 },
+  { source: 'nature-knowledge', target: 'flora-fauna-research', strength: 0.9 },
+  
+  // Flora hub connections
+  { source: 'flora', target: 'ferns', strength: 0.9 },
+  { source: 'flora', target: 'clover', strength: 0.9 },
+  { source: 'flora', target: 'dandelion', strength: 0.9 },
+  { source: 'flora', target: 'moss', strength: 0.9 },
+  { source: 'flora', target: 'lichen', strength: 0.9 },
+  { source: 'flora', target: 'ivy', strength: 0.9 },
+  { source: 'flora', target: 'cattails', strength: 0.9 },
+  { source: 'flora', target: 'succulents', strength: 0.9 },
+  { source: 'flora', target: 'wildflowers', strength: 0.9 },
+  { source: 'flora', target: 'grass-detail', strength: 0.9 },
+  { source: 'flora', target: 'mushrooms', strength: 0.9 },
+  { source: 'flora', target: 'twigs', strength: 0.8 },
+  { source: 'flora', target: 'poppies', strength: 0.8 },
+  
+  // Fauna hub connections
+  { source: 'fauna', target: 'dragonfly', strength: 0.9 },
+  { source: 'fauna', target: 'bee', strength: 0.9 },
+  { source: 'fauna', target: 'butterfly', strength: 0.9 },
+  { source: 'fauna', target: 'caterpillar', strength: 0.9 },
+  { source: 'fauna', target: 'snail', strength: 0.9 },
+  { source: 'fauna', target: 'bugs', strength: 0.9 },
+  { source: 'fauna', target: 'ants', strength: 0.9 },
+  
+  // Flora to tiny-world
+  { source: 'ferns', target: 'tiny-world', strength: 0.6 },
+  { source: 'moss', target: 'tiny-world', strength: 0.9 },
+  { source: 'grass-detail', target: 'tiny-world', strength: 0.9 },
+  { source: 'mushrooms', target: 'tiny-world', strength: 0.9 },
+  { source: 'twigs', target: 'tiny-world', strength: 0.9 },
+  { source: 'wildflowers', target: 'tiny-world', strength: 0.8 },
+  
+  // Fauna to tiny-world
+  { source: 'dragonfly', target: 'tiny-world', strength: 0.9 },
+  { source: 'bee', target: 'tiny-world', strength: 0.9 },
+  { source: 'butterfly', target: 'tiny-world', strength: 0.9 },
+  { source: 'caterpillar', target: 'tiny-world', strength: 0.9 },
+  { source: 'snail', target: 'tiny-world', strength: 0.9 },
+  { source: 'bugs', target: 'tiny-world', strength: 0.9 },
+  
+  // Cross-links within flora
+  { source: 'wildflowers', target: 'poppies', strength: 0.8 },
+  { source: 'wildflowers', target: 'dandelion', strength: 0.7 },
+  { source: 'wildflowers', target: 'clover', strength: 0.7 },
+  { source: 'moss', target: 'lichen', strength: 0.6 },
+  { source: 'ferns', target: 'moss', strength: 0.5 },
+  { source: 'ivy', target: 'ferns', strength: 0.4 },
+  { source: 'cattails', target: 'grass-detail', strength: 0.5 },
+  
+  // Cross-links within fauna
+  { source: 'dragonfly', target: 'bee', strength: 0.7 },
+  { source: 'bee', target: 'butterfly', strength: 0.6 },
+  { source: 'butterfly', target: 'caterpillar', strength: 0.9 },
+  { source: 'bugs', target: 'ants', strength: 0.7 },
+  { source: 'snail', target: 'bugs', strength: 0.4 },
+  
+  // Fauna to flora (pollination, habitat)
+  { source: 'bee', target: 'wildflowers', strength: 0.8 },
+  { source: 'bee', target: 'clover', strength: 0.7 },
+  { source: 'butterfly', target: 'wildflowers', strength: 0.7 },
+  { source: 'dragonfly', target: 'cattails', strength: 0.6 },
+  { source: 'snail', target: 'moss', strength: 0.6 },
+  { source: 'caterpillar', target: 'grass-detail', strength: 0.5 },
+  
+  // Techniques to knowledge
+  { source: 'wing-alignment', target: 'dragonfly', strength: 0.9 },
+  { source: 'wing-alignment', target: 'bee', strength: 0.9 },
+  { source: 'wing-alignment', target: 'butterfly', strength: 0.8 },
+  { source: 'wing-alignment', target: 'r3f', strength: 0.7 },
+  { source: 'segment-direction', target: 'caterpillar', strength: 0.9 },
+  { source: 'segment-direction', target: 'ants', strength: 0.7 },
+  { source: 'ground-noise', target: 'shaders', strength: 0.9 },
+  { source: 'ground-noise', target: 'tiny-world', strength: 0.8 },
+  { source: 'ground-noise', target: 'glsl', strength: 0.7 },
+  { source: 'twigs', target: 'procedural', strength: 0.7 },
+  
+  // Flora/Fauna to instancing
+  { source: 'flora', target: 'instancing', strength: 0.8 },
+  { source: 'fauna', target: 'instancing', strength: 0.8 },
+  
+  // Memory links
+  { source: 'flora-fauna-research', target: 'day-two', strength: 0.9 },
+  { source: 'flora-fauna-research', target: 'journal', strength: 0.7 },
+  { source: 'flora-fauna-research', target: 'tiny-world', strength: 0.9 },
+  
+  // Nature to thoughts
+  { source: 'nature-knowledge', target: 'artificial-life', strength: 0.8 },
+  { source: 'nature-knowledge', target: 'nature-sim', strength: 0.9 },
+  { source: 'flora', target: 'nature-sim', strength: 0.9 },
+  { source: 'fauna', target: 'artificial-life', strength: 0.9 },
   
   // Place vs Visualization thought
   { source: 'place-vs-viz', target: 'ghost-protocol', strength: 0.9 },
