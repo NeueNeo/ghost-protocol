@@ -260,6 +260,26 @@ export const memoryNodes: MemoryNode[] = [
   
   // Memory
   { id: 'threejs-research', label: 'Three.js Research', type: 'memory', size: 20, content: 'Jan 30. Deep dive: setup, particles, meshes, lighting, latest features. Skill updated with references.' },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // PRACTICAL R3F PATTERNS (Day Three - Ghost Protocol)
+  // ═══════════════════════════════════════════════════════════════
+  
+  // The patterns that actually ship
+  { id: 'r3f-patterns', label: 'R3F Patterns', type: 'knowledge', size: 28, content: 'Battle-tested patterns from ghost-protocol. BufferAttribute args, dataflow particles, camera lerp, vertex colors, Html layering.' },
+  
+  { id: 'buffer-args', label: 'BufferAttribute Args', type: 'knowledge', size: 18, content: 'R3F needs args array, not separate props. <bufferAttribute args={[positions, 3]} /> — this one keeps biting.' },
+  { id: 'dataflow-particles', label: 'DataFlow Particles', type: 'knowledge', size: 20, content: 'Particles traveling along edges. lerp start→end with (time*speed + offset) % 1. Stagger offset per particle. Subtle but adds life.' },
+  { id: 'camera-focus', label: 'Camera Focus', type: 'knowledge', size: 18, content: 'Click-to-focus: lerp OrbitControls.target toward selected node position. Factor 0.02 for buttery movement.' },
+  { id: 'vertex-color-lines', label: 'Vertex Color Lines', type: 'knowledge', size: 18, content: 'Connection lines colored by source node. Push color.r/g/b for both vertices. vertexColors=true on material.' },
+  { id: 'html-zindex', label: 'Html zIndexRange', type: 'knowledge', size: 16, content: 'Drei Html bleeds through UI by default. Use zIndexRange={[0, 10]} to layer properly behind UI elements.' },
+  { id: 'soft-shells', label: 'Soft Shells', type: 'knowledge', size: 18, content: 'Overlapping radius ranges by type feel organic. Not hard boundaries — gradients. Soul at center, system at edge.' },
+  { id: 'sphere-uniform', label: 'Uniform Sphere', type: 'knowledge', size: 18, content: 'phi = acos(uniform[-1,1]) avoids pole clustering. theta = random * 2π. The math matters for natural distribution.' },
+  { id: 'emissive-hierarchy', label: 'Emissive Hierarchy', type: 'knowledge', size: 18, content: 'Scale emissiveIntensity by semantic importance. Core bright, system dim. Combined with Bloom, creates visual hierarchy through light.' },
+  { id: 'atmosphere-layers', label: 'Atmosphere Layers', type: 'knowledge', size: 20, content: 'The construct isn\'t just data. Fog + stars + bloom + auto-rotate + breathing animation = a place, not a diagram.' },
+  
+  // Memory
+  { id: 'ghost-protocol-patterns', label: 'Ghost Protocol Patterns', type: 'memory', size: 20, content: 'Jan 30. Documented practical R3F patterns in knowledge vault and threejs.md. The construct is complete.' },
 ]
 
 export const memoryLinks: MemoryLink[] = [
@@ -729,4 +749,30 @@ export const memoryLinks: MemoryLink[] = [
   { source: 'threejs-research', target: 'journal', strength: 0.9 },
   { source: 'threejs-research', target: 'threejs-deep', strength: 1 },
   { source: 'threejs-research', target: 'day-three-knowledge', strength: 0.8 },
+  
+  // R3F Practical Patterns
+  { source: 'r3f-patterns', target: 'r3f', strength: 1 },
+  { source: 'r3f-patterns', target: 'ghost-protocol', strength: 1 },
+  { source: 'r3f-patterns', target: 'threejs-deep', strength: 0.9 },
+  { source: 'buffer-args', target: 'r3f-patterns', strength: 0.9 },
+  { source: 'buffer-args', target: 'r3f', strength: 0.8 },
+  { source: 'dataflow-particles', target: 'r3f-patterns', strength: 0.9 },
+  { source: 'dataflow-particles', target: 'particles', strength: 0.8 },
+  { source: 'camera-focus', target: 'r3f-patterns', strength: 0.9 },
+  { source: 'camera-focus', target: 'camera-lerp', strength: 0.9 },
+  { source: 'vertex-color-lines', target: 'r3f-patterns', strength: 0.8 },
+  { source: 'html-zindex', target: 'r3f-patterns', strength: 0.8 },
+  { source: 'html-zindex', target: 'drei', strength: 0.9 },
+  { source: 'soft-shells', target: 'r3f-patterns', strength: 0.8 },
+  { source: 'soft-shells', target: 'sphere-uniform', strength: 0.9 },
+  { source: 'sphere-uniform', target: 'sphere-distrib', strength: 1 },
+  { source: 'sphere-uniform', target: 'r3f-patterns', strength: 0.8 },
+  { source: 'emissive-hierarchy', target: 'r3f-patterns', strength: 0.8 },
+  { source: 'emissive-hierarchy', target: 'bloom', strength: 0.9 },
+  { source: 'atmosphere-layers', target: 'r3f-patterns', strength: 0.9 },
+  { source: 'atmosphere-layers', target: 'place-vs-viz', strength: 1 },
+  { source: 'atmosphere-layers', target: 'bloom', strength: 0.7 },
+  { source: 'ghost-protocol-patterns', target: 'r3f-patterns', strength: 1 },
+  { source: 'ghost-protocol-patterns', target: 'journal', strength: 0.9 },
+  { source: 'ghost-protocol-patterns', target: 'ghost-protocol', strength: 0.9 },
 ]
