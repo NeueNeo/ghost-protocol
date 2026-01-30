@@ -187,6 +187,46 @@ export const memoryNodes: MemoryNode[] = [
   
   // Memory
   { id: 'flora-fauna-research', label: 'Flora/Fauna Research', type: 'memory', size: 20, content: 'Jan 29 late session. Researched ferns, clover, dandelion, lichen, ivy, cattails, succulents. Dragonfly, bee anatomy. Saved to mem_013.' },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // DAY THREE KNOWLEDGE EXPANSION
+  // ═══════════════════════════════════════════════════════════════
+  
+  // CYBERPUNK: EDGERUNNERS
+  { id: 'edgerunners', label: 'Edgerunners', type: 'knowledge', size: 28, content: 'Studio Trigger anime (2022). David Martinez, Lucy, Rebecca, Maine. Cyberpsychosis, corpo exploitation, body mod ethics. HEALTH scored it. Revived CP2077.' },
+  { id: 'david-martinez', label: 'David Martinez', type: 'knowledge', size: 18, content: 'Edgerunners protagonist. Street kid turned merc. Mother\'s death catalyst. Chrome addiction, sandevistan. Tragic hero arc.' },
+  { id: 'lucy-edgerunners', label: 'Lucy', type: 'knowledge', size: 16, content: 'Netrunner. David\'s love interest. Dreams of the moon. Arasaka escapee. Complex underground ties.' },
+  { id: 'cyberpsychosis', label: 'Cyberpsychosis', type: 'knowledge', size: 22, content: 'Psychological breakdown from excessive chrome. Loss of humanity through augmentation. Maine, David — the price of edge.' },
+  
+  // CYPHERPUNK DEEP DIVE
+  { id: 'cypherpunk-history', label: 'Cypherpunk History', type: 'knowledge', size: 30, content: 'Movement from 1988-present. Privacy through cryptography. Mailing list culture. Code as political action. Path to Bitcoin.' },
+  { id: 'timothy-may', label: 'Timothy May', type: 'knowledge', size: 20, content: 'Crypto Anarchist Manifesto (1988). Envisioned untraceable digital transactions. Cypherpunk co-founder.' },
+  { id: 'eric-hughes', label: 'Eric Hughes', type: 'knowledge', size: 20, content: '"Cypherpunks write code" (1993). Pragmatism over rhetoric. Privacy as selective revelation.' },
+  { id: 'david-chaum', label: 'David Chaum', type: 'knowledge', size: 22, content: 'DigiCash founder. Blind signatures. Anonymous payment systems. The proto-blueprint for digital currency.' },
+  { id: 'hal-finney', label: 'Hal Finney', type: 'knowledge', size: 22, content: 'First reusable proof-of-work. Ran Bitcoin\'s first transaction with Satoshi. Early believer.' },
+  { id: 'nick-szabo', label: 'Nick Szabo', type: 'knowledge', size: 22, content: 'Smart contracts concept. Bit Gold — direct Bitcoin precursor. Decentralized trust pioneer.' },
+  { id: 'wei-dai', label: 'Wei Dai', type: 'knowledge', size: 20, content: 'B-money proposal. Anonymous distributed electronic cash. Cited in Bitcoin whitepaper.' },
+  { id: 'pgp', label: 'PGP', type: 'knowledge', size: 18, content: 'Pretty Good Privacy. Phil Zimmermann. Strong encryption for the masses. Legal battles with government.' },
+  { id: 'bitcoin-origins', label: 'Bitcoin Origins', type: 'knowledge', size: 24, content: 'Satoshi Nakamoto (2008). Built on hashcash, b-money, bit gold. Decentralized trust, cryptographic verification.' },
+  
+  // RECORD LABELS
+  { id: 'record-labels', label: 'Record Labels', type: 'knowledge', size: 26, content: 'Ghostly, Warp, Good Looking. Three pillars of electronic music evolution.' },
+  { id: 'ghostly', label: 'Ghostly International', type: 'knowledge', size: 22, content: 'Founded 1999, Ann Arbor. Sam Valenti IV. Design-first ethos. Matthew Dear, Tycho, Shigeto, Com Truise.' },
+  { id: 'warp', label: 'Warp Records', type: 'knowledge', size: 24, content: 'Sheffield UK. Artificial Intelligence (1992) invented IDM. Aphex, Autechre, BoC, Squarepusher, FlyLo.' },
+  { id: 'good-looking', label: 'Good Looking Records', type: 'knowledge', size: 22, content: 'LTJ Bukem\'s liquid d&b cathedral. Looking Good, Earth sub-labels. Peshay, Blu Mar Ten, Seba. Jazz-influenced atmosphere.' },
+  { id: 'ltj-bukem', label: 'LTJ Bukem', type: 'knowledge', size: 18, content: 'Liquid drum & bass pioneer. Good Looking Records founder. "Journey Inwards". Transformed jungle into art.' },
+  { id: 'idm', label: 'IDM', type: 'knowledge', size: 20, content: 'Intelligent Dance Music. Warp\'s 1992 coinage. Electronic as listening experience. Cerebral over visceral.' },
+  
+  // FOREST FLOOR EXPANSION
+  { id: 'forest-floor', label: 'Forest Floor', type: 'knowledge', size: 26, content: 'Temperate deciduous understory. Layers: litter → humus → topsoil. Spring ephemerals, mycorrhizal networks, decomposer web.' },
+  { id: 'mycorrhizal', label: 'Mycorrhizal Networks', type: 'knowledge', size: 22, content: 'Wood wide web. Fungal threads connecting tree roots. Nutrient sharing, stress signals. Forest as superorganism.' },
+  { id: 'spring-ephemerals', label: 'Spring Ephemerals', type: 'knowledge', size: 18, content: 'Trillium, bloodroot, hepatica. Bloom before canopy closes. Quick lifecycle in the light window.' },
+  { id: 'liverworts', label: 'Liverworts', type: 'knowledge', size: 14, content: 'Primitive non-vascular plants. Moisture indicators. High humidity, stable ecosystem markers.' },
+  { id: 'decomposers', label: 'Decomposers', type: 'knowledge', size: 18, content: 'Fungi, millipedes, earthworms, soil mites. Break down organic matter. Nutrient cycling engine.' },
+  { id: 'salamanders', label: 'Salamanders', type: 'knowledge', size: 16, content: 'Red-backed, spotted. Moisture-dependent. Forest floor predators. Ecosystem health indicators.' },
+  
+  // Memory
+  { id: 'day-three-knowledge', label: 'Day Three Knowledge', type: 'memory', size: 20, content: 'Jan 30. Expanded vault: Edgerunners, cypherpunk history, record labels (Ghostly/Warp/Good Looking), forest floor ecology.' },
 ]
 
 export const memoryLinks: MemoryLink[] = [
@@ -510,4 +550,87 @@ export const memoryLinks: MemoryLink[] = [
   { source: 'place-vs-viz', target: 'ghost-protocol', strength: 0.9 },
   { source: 'place-vs-viz', target: 'ghost-shell', strength: 0.6 },
   { source: 'place-vs-viz', target: 'day-two', strength: 0.7 },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // DAY THREE KNOWLEDGE LINKS
+  // ═══════════════════════════════════════════════════════════════
+  
+  // EDGERUNNERS
+  { source: 'edgerunners', target: 'cyberpunk-lore', strength: 0.9 },
+  { source: 'edgerunners', target: 'health', strength: 0.9 },
+  { source: 'edgerunners', target: 'gits', strength: 0.7 },
+  { source: 'edgerunners', target: 'akira', strength: 0.6 },
+  { source: 'edgerunners', target: 'blackwall', strength: 0.7 },
+  { source: 'edgerunners', target: 'david-martinez', strength: 1 },
+  { source: 'edgerunners', target: 'lucy-edgerunners', strength: 0.9 },
+  { source: 'edgerunners', target: 'cyberpsychosis', strength: 1 },
+  { source: 'david-martinez', target: 'cyberpsychosis', strength: 0.9 },
+  { source: 'david-martinez', target: 'lucy-edgerunners', strength: 0.8 },
+  { source: 'cyberpsychosis', target: 'transhumanism', strength: 0.7 },
+  { source: 'cyberpsychosis', target: 'cyberpunk-lore', strength: 0.8 },
+  
+  // CYPHERPUNK HISTORY
+  { source: 'cypherpunk-history', target: 'cypherpunks', strength: 1 },
+  { source: 'cypherpunk-history', target: 'timothy-may', strength: 0.9 },
+  { source: 'cypherpunk-history', target: 'eric-hughes', strength: 0.9 },
+  { source: 'cypherpunk-history', target: 'david-chaum', strength: 0.9 },
+  { source: 'cypherpunk-history', target: 'hal-finney', strength: 0.9 },
+  { source: 'cypherpunk-history', target: 'nick-szabo', strength: 0.9 },
+  { source: 'cypherpunk-history', target: 'wei-dai', strength: 0.9 },
+  { source: 'cypherpunk-history', target: 'pgp', strength: 0.8 },
+  { source: 'cypherpunk-history', target: 'bitcoin-origins', strength: 1 },
+  { source: 'cypherpunk-history', target: 'hacker-culture', strength: 0.8 },
+  { source: 'cypherpunk-history', target: 'web3-tech', strength: 0.7 },
+  { source: 'timothy-may', target: 'eric-hughes', strength: 0.8 },
+  { source: 'david-chaum', target: 'bitcoin-origins', strength: 0.7 },
+  { source: 'hal-finney', target: 'bitcoin-origins', strength: 0.9 },
+  { source: 'nick-szabo', target: 'bitcoin-origins', strength: 0.9 },
+  { source: 'wei-dai', target: 'bitcoin-origins', strength: 0.8 },
+  { source: 'pgp', target: 'eric-hughes', strength: 0.6 },
+  { source: 'cypherpunks', target: 'laughing-man', strength: 0.7 },
+  { source: 'bitcoin-origins', target: 'web3-tech', strength: 0.9 },
+  
+  // RECORD LABELS
+  { source: 'record-labels', target: 'ghostly', strength: 0.9 },
+  { source: 'record-labels', target: 'warp', strength: 0.9 },
+  { source: 'record-labels', target: 'good-looking', strength: 0.9 },
+  { source: 'record-labels', target: 'knowledge-vault', strength: 0.7 },
+  { source: 'ghostly', target: 'burial', strength: 0.5 },
+  { source: 'warp', target: 'aphex', strength: 1 },
+  { source: 'warp', target: 'idm', strength: 1 },
+  { source: 'warp', target: 'burial', strength: 0.6 },
+  { source: 'good-looking', target: 'ltj-bukem', strength: 1 },
+  { source: 'ltj-bukem', target: 'burial', strength: 0.4 },
+  { source: 'idm', target: 'aphex', strength: 1 },
+  { source: 'idm', target: 'industrial', strength: 0.4 },
+  { source: 'aphex', target: 'warp', strength: 1 },
+  
+  // FOREST FLOOR
+  { source: 'forest-floor', target: 'nature-knowledge', strength: 0.9 },
+  { source: 'forest-floor', target: 'flora', strength: 0.9 },
+  { source: 'forest-floor', target: 'fauna', strength: 0.8 },
+  { source: 'forest-floor', target: 'mycorrhizal', strength: 1 },
+  { source: 'forest-floor', target: 'spring-ephemerals', strength: 0.9 },
+  { source: 'forest-floor', target: 'decomposers', strength: 0.9 },
+  { source: 'forest-floor', target: 'liverworts', strength: 0.8 },
+  { source: 'forest-floor', target: 'salamanders', strength: 0.8 },
+  { source: 'forest-floor', target: 'tiny-world', strength: 0.8 },
+  { source: 'mycorrhizal', target: 'mushrooms', strength: 0.9 },
+  { source: 'mycorrhizal', target: 'artificial-life', strength: 0.6 },
+  { source: 'spring-ephemerals', target: 'wildflowers', strength: 0.8 },
+  { source: 'decomposers', target: 'mushrooms', strength: 0.9 },
+  { source: 'decomposers', target: 'bugs', strength: 0.7 },
+  { source: 'liverworts', target: 'moss', strength: 0.9 },
+  { source: 'liverworts', target: 'ferns', strength: 0.7 },
+  { source: 'salamanders', target: 'fauna', strength: 0.8 },
+  { source: 'salamanders', target: 'forest-floor', strength: 0.9 },
+  
+  // Day Three Memory
+  { source: 'day-three-knowledge', target: 'journal', strength: 0.9 },
+  { source: 'day-three-knowledge', target: 'edgerunners', strength: 0.8 },
+  { source: 'day-three-knowledge', target: 'cypherpunk-history', strength: 0.8 },
+  { source: 'day-three-knowledge', target: 'record-labels', strength: 0.8 },
+  { source: 'day-three-knowledge', target: 'forest-floor', strength: 0.8 },
+  { source: 'day-three-knowledge', target: 'day-two', strength: 0.6 },
+  { source: 'day-three-knowledge', target: 'knowledge-vault', strength: 0.7 },
 ]
