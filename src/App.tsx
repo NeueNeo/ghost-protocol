@@ -148,7 +148,7 @@ function ForceGraph({ onNodeClick }: { onNodeClick: (node: MemoryNode | null) =>
       .attr('filter', 'url(#glow)')
     
     // Hover effects
-    node.on('mouseover', function(event, d) {
+    node.on('mouseover', function(_event, d) {
       d3.select(this).selectAll('circle')
         .transition()
         .duration(200)

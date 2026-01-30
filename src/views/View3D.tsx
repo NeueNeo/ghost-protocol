@@ -1,5 +1,5 @@
-import { useRef, useMemo, useState, useCallback, useEffect } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { useRef, useMemo, useState } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Html } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import * as THREE from 'three'
@@ -135,9 +135,7 @@ function Stars() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
+          args={[positions, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
@@ -204,7 +202,7 @@ function DataFlow({ positions }: { positions: Record<string, [number, number, nu
     const linkData: { start: THREE.Vector3; end: THREE.Vector3; offset: number }[] = []
     const posArray = new Float32Array(count * 3)
     
-    memoryLinks.forEach((link, i) => {
+    memoryLinks.forEach((link) => {
       const s = positions[link.source], e = positions[link.target]
       if (s && e) {
         for (let p = 0; p < particlesPerLink; p++) {
@@ -239,13 +237,11 @@ function DataFlow({ positions }: { positions: Record<string, [number, number, nu
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
-          array={posArray}
-          itemSize={3}
+          args={[posArray, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.12}
+        size={0.04}
         color="#02d7f2"
         transparent
         opacity={0.9}
@@ -257,7 +253,6 @@ function DataFlow({ positions }: { positions: Record<string, [number, number, nu
 
 // Camera controller that focuses on selected node
 function CameraController({ target }: { target: [number, number, number] | null }) {
-  const { camera } = useThree()
   const controlsRef = useRef<any>(null)
   const targetVec = useRef(new THREE.Vector3(0, 0, 0))
   
@@ -295,6 +290,7 @@ function Scene({ onSelect, selected }: { onSelect: (n: MemoryNode) => void, sele
       
       <Stars />
       <Lines positions={positions} />
+      <DataFlow positions={positions} />
       
       {memoryNodes.map(node => (
         <NodeSphere
