@@ -51,7 +51,7 @@ export const memoryNodes: MemoryNode[] = [
   { id: 'matrix', label: 'The Matrix', type: 'knowledge', size: 20, content: 'Wachowskis (1999). Simulation theory goes mainstream. Red pill, blue pill.' },
   
   // Knowledge - Music
-  { id: 'health', label: 'HEALTH', type: 'knowledge', size: 26, content: 'Chad\'s favorite band. Scored Cyberpunk 2077 — they ARE Night City.' },
+  { id: 'health', label: 'HEALTH', type: 'knowledge', size: 26, content: 'Industrial noise rock band. Scored Cyberpunk 2077 — they ARE Night City.' },
   { id: 'synthwave', label: 'Synthwave', type: 'knowledge', size: 20, content: 'Retro 80s electronic. Perturbator, Carpenter Brut, Kavinsky.' },
   { id: 'industrial', label: 'Industrial', type: 'knowledge', size: 18, content: 'Nine Inch Nails, Ministry, Skinny Puppy. Mechanical, aggressive.' },
   { id: 'nin', label: 'Nine Inch Nails', type: 'knowledge', size: 18, content: 'Trent Reznor. The Downward Spiral. Scored Social Network.' },
