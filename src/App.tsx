@@ -38,18 +38,18 @@ function ForceGraph({ onNodeClick }: { onNodeClick: (node: MemoryNode | null) =>
     
     svg.selectAll('*').remove()
     
-    // Create defs for glow filter
+    // Create defs for glow filter - simplified for performance
     const defs = svg.append('defs')
     
     const filter = defs.append('filter')
       .attr('id', 'glow')
-      .attr('x', '-50%')
-      .attr('y', '-50%')
-      .attr('width', '200%')
-      .attr('height', '200%')
+      .attr('x', '-30%')
+      .attr('y', '-30%')
+      .attr('width', '160%')
+      .attr('height', '160%')
     
     filter.append('feGaussianBlur')
-      .attr('stdDeviation', '3')
+      .attr('stdDeviation', '2')
       .attr('result', 'coloredBlur')
     
     const feMerge = filter.append('feMerge')
@@ -78,26 +78,29 @@ function ForceGraph({ onNodeClick }: { onNodeClick: (node: MemoryNode | null) =>
     const links = memoryLinks.map(d => ({ ...d }))
     
     // Create force simulation centered at origin
+    // Optimized: lower iterations, stop when stable
     const simulation = d3.forceSimulation<MemoryNode>(nodes)
       .force('link', d3.forceLink<MemoryNode, MemoryLink>(links)
         .id(d => d.id)
-        .distance(120)
-        .strength(d => (d as MemoryLink).strength || 0.5))
-      .force('charge', d3.forceManyBody().strength(-400))
+        .distance(100)
+        .strength(d => (d as MemoryLink).strength || 0.3))
+      .force('charge', d3.forceManyBody().strength(-300).distanceMax(400))
       .force('center', d3.forceCenter(0, 0))
-      .force('collision', d3.forceCollide<MemoryNode>().radius(d => (d.size || 20) + 15))
-      .force('x', d3.forceX(0).strength(0.05))
-      .force('y', d3.forceY(0).strength(0.05))
+      .force('collision', d3.forceCollide<MemoryNode>().radius(d => (d.size || 20) + 10))
+      .force('x', d3.forceX(0).strength(0.03))
+      .force('y', d3.forceY(0).strength(0.03))
+      .alphaDecay(0.03)
+      .alphaMin(0.01)
     
-    // Draw links
+    // Draw links - thinner and more transparent for performance
     const link = g.append('g')
       .attr('class', 'links')
       .selectAll('line')
       .data(links)
       .join('line')
       .attr('stroke', '#02d7f2')
-      .attr('stroke-opacity', 0.3)
-      .attr('stroke-width', d => ((d as MemoryLink).strength || 0.5) * 3)
+      .attr('stroke-opacity', 0.25)
+      .attr('stroke-width', d => Math.max(1, ((d as MemoryLink).strength || 0.5) * 2))
     
     // Draw node groups
     const node = g.append('g')
@@ -122,64 +125,43 @@ function ForceGraph({ onNodeClick }: { onNodeClick: (node: MemoryNode | null) =>
           d.fy = null
         }))
     
-    // Outer glow circle
-    node.append('circle')
-      .attr('r', d => (d.size || 20) + 5)
-      .attr('fill', d => typeColors[d.type])
-      .attr('fill-opacity', 0.1)
-      .attr('filter', 'url(#glow)')
-    
-    // Main node circle
+    // Main node circle only (removed outer glow circle for perf)
     node.append('circle')
       .attr('r', d => d.size || 20)
       .attr('fill', d => typeColors[d.type])
-      .attr('fill-opacity', 0.15)
+      .attr('fill-opacity', 0.2)
       .attr('stroke', d => typeColors[d.type])
       .attr('stroke-width', 2)
     
-    // Node labels
+    // Node labels - no glow filter for performance
     node.append('text')
       .text(d => d.label)
       .attr('text-anchor', 'middle')
-      .attr('dy', d => (d.size || 20) + 18)
+      .attr('dy', d => (d.size || 20) + 16)
       .attr('fill', '#e0e0e8')
-      .attr('font-size', '11px')
+      .attr('font-size', '10px')
       .attr('font-family', 'JetBrains Mono, monospace')
-      .attr('filter', 'url(#glow)')
     
-    // Hover effects
+    // Hover effects - simplified for performance (no link transitions)
     node.on('mouseover', function(_event, d) {
-      d3.select(this).selectAll('circle')
-        .transition()
-        .duration(200)
-        .attr('fill-opacity', (_, i) => i === 0 ? 0.3 : 0.4)
+      d3.select(this).select('circle')
+        .attr('fill-opacity', 0.4)
         .attr('stroke-width', 3)
       
-      // Highlight connected links
-      link.transition()
-        .duration(200)
+      // Highlight connected links without transition
+      link
         .attr('stroke-opacity', l => {
           const source = (l.source as MemoryNode).id || l.source
           const target = (l.target as MemoryNode).id || l.target
-          return source === d.id || target === d.id ? 0.8 : 0.1
-        })
-        .attr('stroke-width', l => {
-          const source = (l.source as MemoryNode).id || l.source
-          const target = (l.target as MemoryNode).id || l.target
-          return source === d.id || target === d.id ? 4 : 1
+          return source === d.id || target === d.id ? 0.7 : 0.15
         })
     })
     .on('mouseout', function() {
-      d3.select(this).selectAll('circle')
-        .transition()
-        .duration(200)
-        .attr('fill-opacity', (_, i) => i === 0 ? 0.1 : 0.15)
+      d3.select(this).select('circle')
+        .attr('fill-opacity', 0.2)
         .attr('stroke-width', 2)
       
-      link.transition()
-        .duration(200)
-        .attr('stroke-opacity', 0.3)
-        .attr('stroke-width', d => ((d as MemoryLink).strength || 0.5) * 3)
+      link.attr('stroke-opacity', 0.25)
     })
     .on('click', (event, d) => {
       event.stopPropagation()
