@@ -280,6 +280,32 @@ export const memoryNodes: MemoryNode[] = [
   
   // Memory
   { id: 'ghost-protocol-patterns', label: 'Ghost Protocol Patterns', type: 'memory', size: 20, content: 'Jan 30. Documented practical R3F patterns in knowledge vault and threejs.md. The construct is complete.' },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // LENIA - CONTINUOUS CELLULAR AUTOMATA (Day Three Late)
+  // ═══════════════════════════════════════════════════════════════
+  
+  // Hub
+  { id: 'lenia', label: 'Lenia', type: 'project', size: 30, content: 'Continuous cellular automata. Mathematical life forms. 13 species presets with unique behaviors. WebGL shader simulation.' },
+  
+  // Core concepts
+  { id: 'lenia-math', label: 'Lenia Math', type: 'knowledge', size: 26, content: 'A(t+Δt) = clamp(A(t) + Δt * G(K*A), 0, 1). Kernel convolution + growth function. The equation that creates life.' },
+  { id: 'lenia-kernel', label: 'Lenia Kernel', type: 'knowledge', size: 22, content: 'Gaussian rings at radii n/N with weights β. R=radius, kernelSigma=ring width. Defines perception field.' },
+  { id: 'lenia-growth', label: 'Growth Function', type: 'knowledge', size: 22, content: 'G(u) = 2*exp(-(u-μ)²/2σ²) - 1. Returns [-1,1]. Positive near μ (grow), negative away (shrink). The Goldilocks zone.' },
+  { id: 'continuous-ca', label: 'Continuous CA', type: 'knowledge', size: 24, content: 'Cellular automata with real-valued states, continuous space-time. Lenia generalizes Game of Life into continuous domain.' },
+  
+  // Species
+  { id: 'lenia-species', label: 'Lenia Species', type: 'knowledge', size: 24, content: '13 presets: Orbium, Gyrorbium, Scutium, Helix, Microbia, Oceania, Luminara, etc. Each with unique parameters and behaviors.' },
+  { id: 'orbium', label: 'Orbium', type: 'knowledge', size: 18, content: 'Lenia\'s iconic lifeform. Self-organizing circular pattern that glides across field. Discovered by Bert Chan 2018.' },
+  { id: 'primordial-soup', label: 'Primordial Soup', type: 'knowledge', size: 18, content: 'Chaotic regime. High μ, wide σ. Volatile patterns at edge of chaos. Concentric waves, reaction-diffusion dynamics.' },
+  { id: 'microbia-species', label: 'Microbia', type: 'knowledge', size: 16, content: 'Small kernel radius (R=7). Tiny, tightly-packed organisms. Bacterial colony dynamics.' },
+  
+  // Technical
+  { id: 'lenia-shaders', label: 'Lenia Shaders', type: 'knowledge', size: 20, content: 'Compute shader for simulation, render shader for visualization. Ping-pong buffers, GPU convolution.' },
+  { id: 'bert-chan', label: 'Bert Chan', type: 'knowledge', size: 18, content: 'Lenia creator. Research since 2015, formalized 2018. Discovered 400+ species. "Mathematical life forms."' },
+  
+  // Memory
+  { id: 'lenia-complete', label: 'Lenia Complete', type: 'memory', size: 20, content: 'Jan 30. All 13 species working. Clean UI: Species dropdown, Display, Respawn. Pushed to GitHub. Claude fixed my mess.' },
 ]
 
 export const memoryLinks: MemoryLink[] = [
@@ -775,4 +801,51 @@ export const memoryLinks: MemoryLink[] = [
   { source: 'ghost-protocol-patterns', target: 'r3f-patterns', strength: 1 },
   { source: 'ghost-protocol-patterns', target: 'journal', strength: 0.9 },
   { source: 'ghost-protocol-patterns', target: 'ghost-protocol', strength: 0.9 },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // LENIA LINKS
+  // ═══════════════════════════════════════════════════════════════
+  
+  // Lenia hub connections
+  { source: 'lenia', target: 'projects', strength: 0.9 },
+  { source: 'lenia', target: 'lenia-math', strength: 1 },
+  { source: 'lenia', target: 'lenia-species', strength: 0.9 },
+  { source: 'lenia', target: 'lenia-shaders', strength: 0.9 },
+  { source: 'lenia', target: 'continuous-ca', strength: 1 },
+  { source: 'lenia', target: 'artificial-life', strength: 0.9 },
+  { source: 'lenia', target: 'r3f', strength: 0.8 },
+  { source: 'lenia', target: 'threejs', strength: 0.8 },
+  
+  // Math & theory
+  { source: 'lenia-math', target: 'lenia-kernel', strength: 1 },
+  { source: 'lenia-math', target: 'lenia-growth', strength: 1 },
+  { source: 'lenia-math', target: 'shaders', strength: 0.8 },
+  { source: 'lenia-math', target: 'glsl', strength: 0.7 },
+  { source: 'lenia-kernel', target: 'lenia-growth', strength: 0.9 },
+  { source: 'continuous-ca', target: 'artificial-life', strength: 0.9 },
+  { source: 'continuous-ca', target: 'procedural', strength: 0.7 },
+  
+  // Species
+  { source: 'lenia-species', target: 'orbium', strength: 0.9 },
+  { source: 'lenia-species', target: 'primordial-soup', strength: 0.9 },
+  { source: 'lenia-species', target: 'microbia-species', strength: 0.9 },
+  { source: 'orbium', target: 'bert-chan', strength: 0.9 },
+  { source: 'primordial-soup', target: 'artificial-life', strength: 0.8 },
+  
+  // Technical
+  { source: 'lenia-shaders', target: 'shaders', strength: 1 },
+  { source: 'lenia-shaders', target: 'webgl', strength: 0.9 },
+  { source: 'lenia-shaders', target: 'gpu-particles', strength: 0.6 },
+  { source: 'bert-chan', target: 'lenia', strength: 1 },
+  { source: 'bert-chan', target: 'artificial-life', strength: 0.7 },
+  
+  // Cross-project links
+  { source: 'lenia', target: 'tiny-world', strength: 0.7 },
+  { source: 'microbia-species', target: 'fauna', strength: 0.5 },
+  { source: 'continuous-ca', target: 'nature-sim', strength: 0.6 },
+  
+  // Memory
+  { source: 'lenia-complete', target: 'journal', strength: 0.9 },
+  { source: 'lenia-complete', target: 'lenia', strength: 1 },
+  { source: 'lenia-complete', target: 'day-three-knowledge', strength: 0.8 },
 ]
